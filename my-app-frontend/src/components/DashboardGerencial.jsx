@@ -4,7 +4,7 @@ import {
   RefreshCw, Stethoscope, Calendar, XCircle,
   FileText, Filter, Scale, MapPin, Printer
 } from 'lucide-react';
-import { cargarEstadisticas as fetchEstadisticasAPI } from '../services/api.js';
+import { cargarEstadisticas as fetchEstadisticasAPI, API_BASE_URL } from '../services/api.js';
 
 export default function DashboardGerencial({ activo = true }) {
   const [estadisticas, setEstadisticas] = useState(null);
@@ -214,7 +214,7 @@ export default function DashboardGerencial({ activo = true }) {
               if (fechaInicio) q.append('fecha_inicio', fechaInicio);
               if (fechaFin) q.append('fecha_fin', fechaFin);
               const qs = q.toString() ? `?${q.toString()}` : '';
-              window.open(`http://localhost:4000/api/dashboard/informe-pdf${qs}`, '_blank');
+              window.open(`${API_BASE_URL}/dashboard/informe-pdf${qs}`, '_blank');
             }}
             className="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 transition cursor-pointer shadow-sm"
           >
@@ -531,7 +531,7 @@ export default function DashboardGerencial({ activo = true }) {
                       <td className="px-4 py-3 text-right">
                         {esAro ? (
                           <button
-                            onClick={() => window.open(`http://localhost:4000/api/fichas/boleta/${item.id_ficha}/pdf`, '_blank')}
+                            onClick={() => window.open(`${API_BASE_URL}/fichas/boleta/${item.id_ficha}/pdf`, '_blank')}
                             className="text-slate-900 hover:text-sky-700 font-bold flex items-center gap-1 ml-auto text-xs cursor-pointer"
                           >
                             <Printer className="w-3.5 h-3.5" /> PDF

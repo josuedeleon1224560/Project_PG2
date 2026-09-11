@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Lock, Mail, ShieldCheck, Building2, RefreshCw, AlertCircle } from 'lucide-react';
 
+import { API_BASE_URL } from '../services/api';
+
 export default function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,7 +20,7 @@ export default function Login({ onLoginSuccess }) {
 
     setCargando(true);
     try {
-      const res = await fetch('http://localhost:4000/api/auth/login', {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
@@ -46,7 +48,7 @@ export default function Login({ onLoginSuccess }) {
   return (
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4 sm:p-6">
       <div className="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-200 p-8 space-y-6">
-        
+
         {/* Encabezado Institucional */}
         <div className="text-center space-y-2">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-sky-600 text-white font-black text-2xl shadow-md mb-1">

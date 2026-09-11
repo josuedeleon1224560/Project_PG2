@@ -6,7 +6,8 @@ import {
 import {
   cargarHistorialBoletas as fetchBoletasAPI,
   despacharAlertaWhatsApp as apiDespacharWhatsApp,
-  despacharAlertaEmail as apiDespacharEmail
+  despacharAlertaEmail as apiDespacharEmail,
+  API_BASE_URL
 } from '../services/api.js';
 
 export default function BoletasAlertas({ activo = true }) {
@@ -361,7 +362,7 @@ export default function BoletasAlertas({ activo = true }) {
                   onClick={() => {
                     const id = boletaSeleccionada?.id_ficha;
                     if (id) {
-                      window.open(`http://localhost:4000/api/fichas/boleta/${id}/pdf`, '_blank');
+                      window.open(`${API_BASE_URL}/fichas/boleta/${id}/pdf`, '_blank');
                     } else {
                       alert('Seleccione una boleta del listado para descargar el documento.');
                     }

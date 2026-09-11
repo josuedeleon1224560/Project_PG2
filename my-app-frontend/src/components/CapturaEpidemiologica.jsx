@@ -14,7 +14,8 @@ import {
   despacharAlertaWhatsApp as apiDespacharWhatsApp,
   despacharAlertaEmail as apiDespacharEmail,
   guardarBorradorMovil as apiGuardarBorradorMovil,
-  obtenerBorradorMovil as apiObtenerBorradorMovil
+  obtenerBorradorMovil as apiObtenerBorradorMovil,
+  API_BASE_URL
 } from '../services/api.js';
 
 const CATEGORIAS = [
@@ -1054,7 +1055,7 @@ export default function CapturaEpidemiologica({
                     onClick={() => {
                       const id = resultadoARO.id_ficha || resultadoARO.ficha?.id_ficha;
                       if (id) {
-                        window.open(`http://localhost:4000/api/fichas/boleta/${id}/pdf`, '_blank');
+                        window.open(`${API_BASE_URL}/fichas/boleta/${id}/pdf`, '_blank');
                       } else {
                         alert('No se encontró el identificador de la ficha para emitir el PDF.');
                       }

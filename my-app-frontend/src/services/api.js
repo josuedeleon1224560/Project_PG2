@@ -3,14 +3,19 @@
  * Conecta el Frontend con los endpoints REST del Backend en Node.js/PostgreSQL
  */
 
-const getApiBaseUrl = () => {
-  if (typeof window !== 'undefined' && window.location.hostname) {
-    return `http://${window.location.hostname}:4000/api`;
+export const getApiBaseUrl = () => {
+  if (typeof window !== 'undefined' && window.location) {
+    // Si estamos en desarrollo local con Vite (puerto 5173)
+    if (window.location.port === '5173') {
+      return `http://${window.location.hostname}:4000/api`;
+    }
+    // En produccion (Nginx en puerto 80/443 o cualquier dominio/IP)
+    return '/api';
   }
-  return 'http://localhost:4000/api';
+  return '/api';
 };
 
-const API_BASE_URL = getApiBaseUrl();
+export const API_BASE_URL = getApiBaseUrl();
 
 /**
  * Helper seguro para peticiones HTTP con JWT y Manejo de Sesión
